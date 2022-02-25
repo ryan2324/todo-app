@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+html, body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .container{
+    border: 2px solid #CCC;
+    width: 500px;
+    height: 600px;
+    display: grid;
+    grid-template-rows: 100px 100px 1fr;
+    justify-items: center;
+    box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.23);
+    position: relative;
+    padding: 40px;
+}
+main .container h2{
+    font-size: 30px;
+    font-weight: 600;
+    color: #53BAC1;
+    
+}
+
+main .container #form-container, form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+main .container #edit-form{
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    font-size: 18px;
+    row-gap: 20px;
+}
+.edit-button{
+    cursor: pointer;
+}
+.btn-container{
+    display: flex;
+    column-gap: 10px;
+}
+main .container #edit-form p{
+    margin: 0;
+    padding: 0;
+}
+main .container #form-container input[type = text]{
+    padding: 6px 0;
+    font-size: 18px;
+    width: 250px;
+}
+main .container #form-container button, #save-btn{
+    background-color: #007bff;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    color: #FFF;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 300ms;
+    height: 30px;
+}
+main .container #save-btn{
+    background-color: #007bff;
+    margin-top: 50px;
+}
+main .container #form-container button:active{
+    box-shadow: 0px 200px 5px 200px rgba(0,0,0,0.2) inset;
+
+}
+main .container .list{
+    
+    width: 100%;
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow-y: scroll;
+    
+}
+
+.list::-webkit-scrollbar {
+    width: 10px;
+    
+}
+.list::-webkit-scrollbar-track {
+    background-color: white
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: rgb(155, 155, 155);
+    border-radius: 50px;
+    
+  }
+.list::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(219, 219, 219);
+
+}
+@keyframes spinner {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(359deg);}
+}
+.spinner{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    font-size: 50px;
+    animation-name: spinner;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    padding: 0;
+    margin: 0;
+}
+main .container .list .todos{
+    z-index: 1;
+    width: 400px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    border-radius: 0.25rem;
+    box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.23);
+    transition: 400ms;
+}
+main .container .list .todos:hover{
+    transform: scale(1.1);
+}
+main .container .list .todos p {
+    padding: 0;
+    margin: 0;
+
+}
+main .container .list .todos button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+main .container .list .todos .edit-button {
+    color: #F7C200;
+    
+}
+main .container .list .todos .delete-button {
+    color: #DB0038;
+    
+}
+
+#switch-container{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+#slider{
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 35px;
+    border: 1px solid transparent;
+    padding: 0 3px;
+    position: relative;
+    transition: 500ms;
+}
+#slider::before{
+    content: "";
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: 500ms;
+    text-align: center;
+    
+}
+#edit-finished:checked + #slider::before{
+    
+    transform: translate(31px, -50%);
+
+}
+#edit-finished{
+
+    display: none;
+}
+#edit-finished:checked + #slider{
+    background-color: #007bff;
+}

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1ada97b (first commit)
+>>>>>>> 35f245c (second commit)
 # Logs
 logs
 *.log
@@ -102,3 +109,12 @@ dist
 
 # TernJS port file
 .tern-port
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+node_modules
+>>>>>>> 7545478 (second commit)
+>>>>>>> 1ada97b (first commit)
+>>>>>>> 35f245c (second commit)
