@@ -10,9 +10,21 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <main>
+    <main> 
+        <div class="modal">
+            <div class="modal-content">
+                <button id="close-btn">&times;</button>
+                <p>What should I call you?</p>
+                <form action="" class="modal-form">
+                    <input type="text" name="" id="modal-input" value="Guest">
+                </form>
+                
+                <button id="save-name">save</button>
+            </div>
+        </div>
         <div class="container">
-            <h2>Todo-App</h2>
+            <h2>Todo Today</h2>
+            <h3 id="greetings">Hello,</h3>
             <div action="" id="form-container">
                 <label for="todo"></label>
                 <input required type="text" name="task" id="todo">

@@ -1,24 +1,58 @@
-
+const date = new Date()
+const currentDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
+console.log(currentDate)
 
 const list = document.getElementById("list");
 const addTodo = document.getElementById('add-to-list');
 const inputName = document.getElementById('todo');
 const editButton = document.getElementsByClassName('edit-button');
 const deleteButton = document.getElementsByClassName('delete-button')
-
+const greetings = document.getElementById('greetings')
 const spinner = document.createElement('p');
 spinner.className = 'spinner'
 spinner.innerHTML = '<i class="fa-solid fa-spinner"></i>'
-
 list.appendChild(spinner)
 
+const modal = document.getElementsByClassName('modal')
+const modalSaveBtn = document.getElementById('save-name');
+const modalInput = document.getElementById('modal-input');
+
+
+const cookie = { };
+    document.cookie.split(";").map((c) =>{
+        c.split("=").reduce((key, val) =>{
+            cookie[key.trim()] = val
+        })
+    })
+
+        const getUser = async () =>{
+        await axios.get(`/getuser/${cookie.todoUserId}`).then((res) =>{
+            greetings.textContent = `Welcome to your personal Todo-App, ${res.data.name}!    `
+        })
+    }
+
+
+    
+/////////////////////////
+const setName = async(name) =>{
+    await axios.post('/user',{name}).then((res) =>{
+        document.cookie = `todoUserId=${res.data}`
+        console.log("data from post",res.data)
+        window.location.reload();
+    }) ;
+}
+
+
+modalSaveBtn.addEventListener('click', () =>{
+    modal[0].style.display = 'none'
+    setName(modalInput.value);
+})
 
 const fetchData = async () =>{
-    await axios.get(`${window.location.href}get-all-todos`).then(res =>{
+    await axios.get(`${window.location.href}get-all-todos/${cookie.todoUserId}`).then(res =>{
         list.style.backgroundColor = 'white'
         list.innerHTML =''
-        res.data.map((data) =>{
-            
+        res.data.todos.map((data) =>{
             const divTodos = document.createElement('div');
             divTodos.className = "todos";
             const todoName = document.createElement('p');
@@ -50,13 +84,23 @@ const fetchData = async () =>{
     
 }
 
+const checkCookie = () =>{
+    if (cookie.todoUserId) {
+        getUser()
+        fetchData();
+        modal[0].style.display = 'none'
+    }
+}
+checkCookie();
 
-fetchData();
 const handlePostRequest = async (e) =>{
     try{
         await axios.post('/add', {
-            title: inputName.value, 
-            finished: false
+            todoUserId: cookie.todoUserId,
+            todo: {
+                title: inputName.value, 
+                date: currentDate,
+                finished: false}
          })
        console.log('success post')
     }catch(error){
@@ -83,7 +127,7 @@ const btnEditHandler = () =>{
 }
 
 const deleteRequest = async (id) =>{
-    await axios.delete(`/del/todo/${id}`)
+    await axios.delete(`/del/todo/${cookie.todoUserId}/${id}`)
 }
 
 const btnDeleteHandler = () =>{
@@ -95,3 +139,5 @@ const btnDeleteHandler = () =>{
     }
     
 }
+
+

@@ -13,10 +13,11 @@ main{
 }
 main .container{
     border: 2px solid #CCC;
+    /* 500 */
     width: 500px;
     height: 600px;
     display: grid;
-    grid-template-rows: 100px 100px 1fr;
+    grid-template-rows: 50px 100px 100px 1fr;
     justify-items: center;
     box-shadow: 0px 1px 5px 2px rgba(0,0,0,0.23);
     position: relative;
@@ -26,7 +27,13 @@ main .container h2{
     font-size: 30px;
     font-weight: 600;
     color: #53BAC1;
-    
+    margin: 0;
+}
+main .container h3{
+    justify-self: start;
+    align-self: center;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 main .container #form-container, form{
@@ -58,7 +65,7 @@ main .container #form-container input[type = text]{
     font-size: 18px;
     width: 250px;
 }
-main .container #form-container button, #save-btn{
+main .container #form-container button, #save-btn, #save-name{
     background-color: #007bff;
     border: 1px solid transparent;
     padding: 6px 12px;
@@ -67,6 +74,7 @@ main .container #form-container button, #save-btn{
     font-weight: 600;
     cursor: pointer;
     transition: 300ms;
+    /* 30px */
     height: 30px;
 }
 main .container #save-btn{
@@ -112,7 +120,7 @@ main .container .list{
 }
 .spinner{
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     top: 50%;
     font-size: 50px;
     animation-name: spinner;
@@ -123,7 +131,7 @@ main .container .list{
     margin: 0;
 }
 main .container .list .todos{
-    z-index: 1;
+    /* 400 */
     width: 400px;
     height: 30px;
     display: flex;
@@ -197,4 +205,64 @@ main .container .list .todos .delete-button {
 }
 #edit-finished:checked + #slider{
     background-color: #007bff;
+}
+.modal{
+    z-index: 2;
+    display: flex;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal .modal-content{
+    background-color: #FFF;
+    width: 350px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 0.25rem;
+    row-gap: 10px;
+    box-shadow: 0px -1px 5px 1px rgba(0,0,0,0.5);
+}
+.modal .modal-content .modal-form #modal-input{
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+.modal .modal-content .modal-form #modal-input:focus{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(122, 122, 122);
+}
+
+#close-btn{
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    margin-left: auto;
+    cursor: pointer;
+    color: #CCC;
+}#close-btn:hover{
+    color: rgb(100, 100, 100);
+}
+
+@media (max-width: 700px) {
+    main .container{
+        /* 500 */
+        width: 300px;
+    }
+    main .container #form-container button, #save-btn, #save-name{
+        /* 30px */
+        height: 40px;
+    }
+    main .container .list .todos{
+        /* 400 */
+        width: 300px;
+    }
 }
