@@ -16,7 +16,7 @@ list.appendChild(spinner)
 const modal = document.getElementsByClassName('modal')
 const modalSaveBtn = document.getElementById('save-name');
 const modalInput = document.getElementById('modal-input');
-
+modal[0].style.display = 'none'
 
 const cookie = { };
     document.cookie.split(";").map((c) =>{
@@ -85,10 +85,14 @@ const fetchData = async () =>{
 }
 
 const checkCookie = () =>{
+    
     if (cookie.todoUserId) {
+        
         getUser()
         fetchData();
-        modal[0].style.display = 'none'
+        
+    }else{
+        modal[0].style.display = 'flex'
     }
 }
 checkCookie();
