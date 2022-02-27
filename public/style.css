@@ -208,7 +208,7 @@ main .container .list .todos .delete-button {
 }
 .modal{
     z-index: 2;
-    display: flex;
+    display: none;
     top: 0;
     left: 0;
     position: fixed;
